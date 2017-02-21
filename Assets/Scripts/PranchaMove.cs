@@ -5,6 +5,8 @@ public class PranchaMove : MonoBehaviour
 {
 
     public float velocidade;
+    public float limite;
+    public float retorno;
 
 
 
@@ -19,6 +21,9 @@ public class PranchaMove : MonoBehaviour
 
         transform.position = transform.position + velocidadeVetorial * Time.deltaTime;
 
-
+        if (transform.position.x <= limite)
+        {
+            transform.position = new Vector3(retorno, transform.position.y, transform.position.z);
+        }
     }
 }
