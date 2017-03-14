@@ -6,22 +6,29 @@ using UnityEngine;
 {
  
      public float ForcaDoPulo = 10f;
- 
+
+
+     private AudioSource audioSource;
      private Animator anim;
      private Rigidbody rb;
+     public AudioClip somPulo;
+     public AudioClip somMorte;
      private bool pulando = false;
  
  	void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-          }
+        rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
+    }
  
  	void Update()
     {
               if (Input.GetMouseButtonDown(0))
         {
             anim.Play("pulando");
+            audioSource.PlayOneShot(somPulo);
             rb.useGravity = true;
             pulando = true;
                     }
@@ -43,6 +50,7 @@ using UnityEngine;
             rb.AddForce(new Vector3(-50f, 20f, 0f), ForceMode.Impulse);
             rb.detectCollisions = false;
             anim.Play("morrendo");
+            audioSource.PlayOneShot(somMorte);
                     }
             }
  
